@@ -173,7 +173,7 @@
 		var name = localStorage.getItem("name");
 	}
 
-	output.innerHTML = "Salutations, how may I assist you " + name + " ?";
+	output.innerHTML = "Salutations, how may I assist you " + name + "?";
 
 	var now = new Date(),
             months = ['January', 'February', 'March', "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -182,8 +182,8 @@
 	input.addEventListener("keyup", function(event) {
 	  if (event.keyCode === 13) {
 	  	inputCheck = input.value.toLowerCase();
-	  	if (inputCheck.includes("math: ")) {
-	  		q=inputCheck.replace("math:", "").replace("tpo(", "Math.pow(").replace("sqt(", "Math.sqrt(");
+	  	if (inputCheck.includes("math")) {
+	  		q=inputCheck.replace("math", "").replace("tpo(", "Math.pow(").replace("sqt(", "Math.sqrt(");
 	  		output.innerHTML = eval(q);
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 	  	} else if (inputCheck.includes("how are you")) {
@@ -234,19 +234,186 @@
 	  		} else if (inputCheck.includes("tempo")) {
 	  			output.innerHTML = "Grave - very slow and solemn : allegro di molto e con brio - very fast and with brilliance";
 	  		} else if (inputCheck.includes("rhythm")) {
-	  			output.innerHTML = "Grave - dotted rhythms sextuplets septuplets semihemidemiquavers : Allegro - staccato crotchets quavers acciaccaturas mordents";
+	  			output.innerHTML = "Grave - dotted rhythms~ sextuplets~ septuplets and semihemidemiquavers : Allegro - staccato crotchets~ quavers~ acciaccaturas and mordents";
 	  		} else if (inputCheck.includes("dynamics")) {
 	  			output.innerHTML = "Contrasting dynamics - pp to ff : sudden changes - eg. sf and fp";
 	  		} else if (inputCheck.includes("melody")) {
-	  			output.innerHTML = "Grave - mainly conjunct quasi improvisatory feel : Fast descending notes : Allegro - ascending staccato crotchets periodic phrasing : Antiphony and hand crossing across tessitura in 2nd subject : Contrary motion : Scalic passages in transition";
+	  			output.innerHTML = "Grave - mainly conjunct quasi improvisatory feel : Fast descending notes : Allegro - ascending staccato crotchets~ periodic phrasing : Antiphony and hand crossing across tessitura in 2nd subject : Contrary motion : Scalic passages in transition";
 	  		} else if (inputCheck.includes("harmony")) {
 	  			output.innerHTML = "Grave - dense 7 note C major chord opens - Use of diminished 7ths : Allegro - Tonic oscillating quaver pedal - Diatonic harmony - functional harmony with cadences (v-i) - Circle of fifths bar 81-84";
 	  		} else if (inputCheck.includes("tonality")) {
 	  			output.innerHTML = "Exposition:,intro - C minor to E flat major : First Subject - C minor : Second Subject - E flat minor : Transition - E flat major : Codetta - C minor,Development:,Grave - G minor : Allegro - E minor,Recapitulation:,First Subject - C minor : Second Subject - F minor (sub dominant) : Grave - C minor";
 	  		} else if (inputCheck.includes("texture")) {
-	  			output.innerHTML = "Grave - Dense homophonic monophonic scales : Allegro - Mostly homophonic : Ending - Chordal homophonic";
+	  			output.innerHTML = "Grave - Dense~ homophonic~ monophonic scales : Allegro - Mostly homophonic : Ending - Chordal - homophonic";
 	  		} else {
-	  			output.innerHTML = "Error 001 : you may have spelt something incorrectly or weren't specific enough";
+	  			output.innerHTML = "Error : you may have spelt something incorrectly or weren't specific enough";
+	  		}
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("bach")) {
+	  		if (inputCheck.includes("metre")) {
+	  			output.innerHTML = "2/4 - but feels like a 6/8 gigue because of triplet quavers";
+	  		} else if (inputCheck.includes("tempo")) {
+	  			output.innerHTML = "Allegro - and remains constant for the whole piece";
+	  		} else if (inputCheck.includes("rhythm")) {
+	  			output.innerHTML = "Dotted rhythm (dotted quaver and semiquaver in fugue subject) : triplet quavers : rhythmic interplay between the soloists (imitation) : longer rhythmic values for the pedal notes";
+	  		} else if (inputCheck.includes("dynamics")) {
+	  			output.innerHTML = "Terraced dynamics";
+	  		} else if (inputCheck.includes("melody")) {
+	  			output.innerHTML = "Fugue subject answer and counter-subject : answer is a 4th higher than subject : imitation throughout : section B is lyrical (antiphonic) : obligato melodies in the RH of the harpsichord : strettos and fragmented melodies : sequences : section B is a variation of the subject";
+	  		} else if (inputCheck.includes("harmony")) {
+	  			output.innerHTML = "Simple diatonic harmony - mainly I IV and V chords : Perfect cadences are used at the end of sections~ such as in bar 232 and 310";
+	  		} else if (inputCheck.includes("tonality")) {
+	  			output.innerHTML = "Section A - D major : Section B - B minor : Section A modulates to A major~ E major : Section B modulates to F# minor and E minor";
+	  		} else if (inputCheck.includes("texture")) {
+	  			output.innerHTML = "Fugal texture with subject~ answer and counter subject : contrapuntal (polyphonic) - last 2 bars are homophonic : texture changes for solo sections";
+	  		} else if (inputCheck.includes("structure")) {
+	  			output.innerHTML = "Ternary form (ABA) : B offers a contrast through the tonality : Fugue";
+	  		} else if (inputCheck.includes("instruments")) {
+	  			output.innerHTML = "Concertino - violin~ flute and harpsichord : Ripieno strings - violin~ viola and cello : harpsichord acts as soloist and accompaniment";
+	  		} else {
+	  			output.innerHTML = "Error : you may have spelt something incorrectly or weren't specific enough";
+	  		}
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("purcell")) {
+	  		if (inputCheck.includes("metre")) {
+	  			output.innerHTML = "4/4 common time";
+	  		} else if (inputCheck.includes("tempo")) {
+	  			output.innerHTML = "No tempo indication - but is played slowly";
+	  		} else if (inputCheck.includes("rhythm")) {
+	  			output.innerHTML = "Predominantly quavers and semiquavers : dotted rhythms : occassional syncopation";
+	  		} else if (inputCheck.includes("melody")) {
+	  			output.innerHTML = "Mainly syllabic : paired slurrings : melismatic moments : repetition : ornaments : range of a 9th : conjunct : sequences";
+	  		} else if (inputCheck.includes("painting")) {
+	  			output.innerHTML = "dissonance on 'pains' : resolution on 'eas'd' : descent on 'drop' : legato slur on 'wond'ring' : extended melisma on 'eternal'";
+	  		} else if (inputCheck.includes("harmony")) {
+	  			output.innerHTML = "Chords are diatonic and functional : perfect cadence every 3-4 bars : false relation and other dissonances occur : occasional suspensions";
+	  		} else if (inputCheck.includes("tonality")) {
+	  			output.innerHTML = "A minor (sometimes ambigious because of chromatiscism) : modulates to e~ G~ C and A : modulations end with perfect cadences";
+	  		} else if (inputCheck.includes("texture")) {
+	  			output.innerHTML = "Melody-Dominated Homophony : ground bass : RH of harpsichord is an elaborate realisation and provides some counterpoint";
+	  		} else if (inputCheck.includes("structure")) {
+	  			output.innerHTML = "Ground bass : uses a 3 bar phrase : only uses quavers : arpeggio based : rising line : the bass modulates after being heard 4 1/2 times before returning complete bar 29";
+	  		} else if (inputCheck.includes("instruments")) {
+	  			output.innerHTML = "Origially sung by countertenor~ it has been transposed from C minor to A minor for soprano voice : The viol and harpsichord act as the continuo part~ with the LH and viol playing the ground bass : monody";
+	  		} else {
+	  			output.innerHTML = "Error : you may have spelt something incorrectly or weren't specific enough";
+	  		}
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("queen")) {
+	  		if (inputCheck.includes("metre")) {
+	  			output.innerHTML = "12/8~ uses some 6/8 bars to extend the phrasing";
+	  		} else if (inputCheck.includes("tempo")) {
+	  			output.innerHTML = "112 bpm~ fast tempo";
+	  		} else if (inputCheck.includes("rhythm")) {
+	  			output.innerHTML = "Heavy use of syncopation : guitar solo uses vocal rhythms";
+	  		} else if (inputCheck.includes("melody")) {
+	  			output.innerHTML = "Mainly syllabic and conjunct : difficult to sing~ meant to show off Mercury's virtuosity : wide range : syncopation and extended phrasing : 4-part choir acts as a backing melody in chorus";
+	  		} else if (inputCheck.includes("harmony")) {
+	  			output.innerHTML = "Harmonic sequences (circle of 5ths) : added chords (7th~ 11th~ 13th) : many modulations~ usually to C minor : inspired by musicals";
+	  		} else if (inputCheck.includes("tonality")) {
+	  			output.innerHTML = "E flat major : tonal ambiguity because it starts with a C minor chord";
+	  		} else if (inputCheck.includes("texture")) {
+	  			output.innerHTML = "Layered texture at the opening (piano enters RH then LH) : generally a light~ homophonic texture : antiphony bars 47-50 : call and response : some more polyphonic sections";
+	  		} else if (inputCheck.includes("structure")) {
+	  			output.innerHTML = "Intro: finger clicks, Verse 1: 2-14, Chorus: 15-22, Instrumental: 23-26, Verse 2 and Chorus 2: 27-43, Solo: 44-61, verse 3: 62-69, Chorus 3: 70-78, Outro: 79-";
+	  		} else if (inputCheck.includes("instruments")) {
+	  			output.innerHTML = "vocals~ piano~ jangle piano~ electric guitar~ bass~ percussion : hybrid piano - no synths : overdubbing (4-part Mercury choir) : panning~ flanger ('lazer beam')~ multitrack~ distortion and reverb";
+	  		} else {
+	  			output.innerHTML = "Error : you may have spelt something incorrectly or weren't specific enough";
+	  		}
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("schwartz")) {
+	  		if (inputCheck.includes("metre")) {
+	  			output.innerHTML = "Changes between 3/2 and cross-common time in beggining~ mostly in 4/4 but goes back to 2/2";
+	  		} else if (inputCheck.includes("tempo")) {
+	  			output.innerHTML = "Some rubato";
+	  		} else if (inputCheck.includes("rhythm")) {
+	  			output.innerHTML = "Driving rhythms : syncopation~ triplets : ostinato patterns in the accompaniment";
+	  		} else if (inputCheck.includes("melody")) {
+	  			output.innerHTML = "Similar pitches to 'over the rainbow' : use of leitmotifs : common use of 4ths and 5ths : metrical shifting : hexatonic 71-79 : highest note (F#) sung at climax (156-57) : vocalisation : recitative nature (operatic) : octanic scale used occasionally : syllabic";
+	  		} else if (inputCheck.includes("harmony")) {
+	  			output.innerHTML = "Bitonality bar 88~ c and G7 chord : mainly diatonic : Verse 1 = 5ths : Verse 2 = Circle of 5ths : Plagal cadence 134-35 : Interrupted cadence 167-68 : polytonality";
+	  		} else if (inputCheck.includes("tonality")) {
+	  			output.innerHTML = "D major to G major to F major to C major to G# major : Suspensions (2nds~ 4ths) : ambiguous harmony - reflects the idea of suspicion in OZ";
+	  		} else if (inputCheck.includes("texture")) {
+	  			output.innerHTML = "Mostly homophonic : polyphony at end : tremolo adds tension : MELODY DOMINATED HOMOPHONY";
+	  		} else if (inputCheck.includes("structure")) {
+	  			output.innerHTML = "Verse-chorus structure (variations in verses and chorus)";
+	  		} else {
+	  			output.innerHTML = "Error : you may have spelt something incorrectly or weren't specific enough";
+	  		}
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("spalding") || inputCheck.includes("samba")) {
+	  		if (inputCheck.includes("metre")) {
+	  			output.innerHTML = "Starts in free tempo~ by bar 4 it is in steady 4/4 but still Rubato and by bar 19 the pulse is steady";
+	  		} else if (inputCheck.includes("tempo")) {
+	  			output.innerHTML = "Starts in free tempo~ by bar 19 the pulse is steady";
+	  		} else if (inputCheck.includes("rhythm")) {
+	  			output.innerHTML = "Bossa Nova based rhythm's : syncopation used throughout";
+	  		} else if (inputCheck.includes("dynamics")) {
+	  			output.innerHTML = "";
+	  		} else if (inputCheck.includes("melody")) {
+	  			output.innerHTML = "Syllabic melodic line : broken chords at beginning : after Verse 2 it is mostly conjunct : vocal line often sings the 7th of the harmony : bar 69 = bar 44";
+	  		} else if (inputCheck.includes("harmony")) {
+	  			output.innerHTML = "Controlled dissonance functioning according to Jazz harmony : substitutions";
+	  		} else if (inputCheck.includes("tonality")) {
+	  			output.innerHTML = "B minor : added and extended chords (Jazz) : altered chords : Eg. Bm 7 flat 5";
+	  		} else if (inputCheck.includes("texture")) {
+	  			output.innerHTML = "Monophonic at beginning (bass solo) : counterpoint between bass and guitar - individual melodic lines : Sparse two-part texture at Verse 3 : Sparseness indicates intimacy";
+	  		} else if (inputCheck.includes("structure")) {
+	  			output.innerHTML = "Intro : Verse 1 : Break : Verse 2 : Solo : Verse 3 : Coda";
+	  		} else if (inputCheck.includes("instruments")) {
+	  			output.innerHTML = "Spain - flamenco guitar : Sung in portuguese : America - Jass bass guitar~ as added chords";
+	  		} else {
+	  			output.innerHTML = "Error : you may have spelt something incorrectly or weren't specific enough";
+	  		}
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("release") || inputCheck.includes("afrocelt")) {
+	  		if (inputCheck.includes("metre")) {
+	  			output.innerHTML = "simple quadruple metre";
+	  		} else if (inputCheck.includes("tempo")) {
+	  			output.innerHTML = "free time at the beginning~ 100bpm at 50''";
+	  		} else if (inputCheck.includes("rhythm")) {
+	  			output.innerHTML = "Slightly swung semi-quavers : syncopation : triplets/sextuplets : Rhythmic ostinato - loops : 2 and 4 bar phrases";
+	  		} else if (inputCheck.includes("melody")) {
+	  			output.innerHTML = "Use of nonsense lyrics : main verse is syllabic : some spoken parts : short phrases : female range - 6th : male range - 13th : vocal samples : repetitive : glissando";
+	  		} else if (inputCheck.includes("harmony")) {
+	  			output.innerHTML = "Repetitive chord sequences : hint of chromaticism : 7th~ 9th chords : slow harmonic pukse : drones";
+	  		} else if (inputCheck.includes("tonality")) {
+	  			output.innerHTML = "Diatonic (C minor/C aeolian) : modal (folk modes - mixolydian/dorian/aeolian)";
+	  		} else if (inputCheck.includes("texture")) {
+	  			output.innerHTML = "Texture changes constantly : use of layering : loops : homophonic : polyphonic";
+	  		} else if (inputCheck.includes("structure")) {
+	  			output.innerHTML = "Intro : Verse 1 : Verse 2 : Solos : Verse 3 : Build : Outro";
+	  		} else if (inputCheck.includes("instruments")) {
+	  			output.innerHTML = "African:,Kora~ talking drum~ shakers,Celtic:,Hurdy-gurdy~ pipes~ bodrahn~ fiddle~ whistle~ accordion, Western:,Electronics~ drums";
+	  		} else {
+	  			output.innerHTML = "Error : you may have spelt something incorrectly or weren't specific enough";
+	  		}
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("star wars") || inputCheck.includes("williams")) {
+	  		if (inputCheck.includes("metre")) {
+	  			output.innerHTML = "4/4~ then 2/2 : 3/4 at 44''-end";
+	  		} else if (inputCheck.includes("tempo")) {
+	  			output.innerHTML = "Maestoso : steady~ stately tempo";
+	  		} else if (inputCheck.includes("rhythm")) {
+	  			output.innerHTML = "Fanfare Rhythm in triplets (leitmotif) : some syncopation : 44''-60'' - marching rhythms";
+	  		} else if (inputCheck.includes("dynamics")) {
+	  			output.innerHTML = "heroic dynamics (dramatic)";
+	  		} else if (inputCheck.includes("melody")) {
+	  			output.innerHTML = "Opening based on a Bb major triad : Common use of 4ths 5ths and 7ths : hexatonic scales : LEITMOTIF";
+	  		} else if (inputCheck.includes("harmony")) {
+	  			output.innerHTML = "opening inverted tonic tremolo pedal : dominant pedal - Section B : Rich chords : quartal harmony : augmented and added chords : neopolitan chords : chromatic chords";
+	  		} else if (inputCheck.includes("tonality")) {
+	  			output.innerHTML = "Bb major";
+	  		} else if (inputCheck.includes("texture")) {
+	  			output.innerHTML = "Main theme is homophonic : polyphonic : contrasting dense to sparse texture (atonal section)";
+	  		} else if (inputCheck.includes("structure")) {
+	  			output.innerHTML = "A-B-A : Link : Rebel theme : Link : March : codetta";
+	  		} else if (inputCheck.includes("instruments")) {
+	  			output.innerHTML = "Full orchestra";
+	  		} else {
+	  			output.innerHTML = "Error : you may have spelt something incorrectly or weren't specific enough";
 	  		}
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 	  	} else {
@@ -255,11 +422,12 @@
 	  	}
 	  	input.value = "";
 	  	setTimeout(function() {
-	  		historyOfQuestions.unshift("<div style='color: #123542; background-color: #7DCEB3; font-style: italic; border-radius: 	5px;'>" + output.innerHTML.toLowerCase() + "</div>");
+	  		historyOfQuestions.unshift("<div style='color: #123542; background-color: #7DCEB3; font-style: italic; border-radius: 	5px;'>" + output.innerHTML + "</div>");
 	  		historyOfQuestions.unshift("" + inputCheck);
-	  		var historyString = historyOfQuestions.toString().split(",").join("<br />");
+	  		var historyString = historyOfQuestions.toString().split(",").join("<br />").replace(/~/g, ",");
 	  		document.getElementById("History").innerHTML = historyString;
-	  	}, timeRead * 500);
+	  		output.innerHTML = output.innerHTML.replace(/~/g, ",")
+	  	}, timeRead * 10);
 
 	  }
 	});
