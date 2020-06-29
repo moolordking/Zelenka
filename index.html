@@ -15,7 +15,7 @@
 	h1 {
 		color: #7dceb3;
 		font-family: 'Poiret One', sans-serif;
-		font-size: 50px;
+		font-size: 30px;
 		margin-left: 10px;
 		margin-top: 0px;
 	}
@@ -52,6 +52,7 @@
 		background-color: #7dceb3;
 		color: #123542;
 		margin-top: -20px;
+		border-radius: 	5px;
 	}
 
 	#Zelenka {
@@ -148,14 +149,14 @@
 	<div id="contentBox">
 		<div id="programBox">
 			<div id="Zelenka"><div id="Eye"><div id="Pupil"></div><div id="Mouth"></div></div></div>
-			<h2 id="Output">Salutations, how may I assist you Master?</h2>
+			<h2 id="Output">Salutations, how may I assist you?</h2>
 			<input id="Input">
 			<h3 id="History"></h2>
 		</div>
 	</div>
 </center>
 
-<script>
+<script type="text/javascript">
 
 	var historyOfQuestions = [];
 
@@ -166,13 +167,13 @@
 	var timeRead = "2";
 
 	if (localStorage.getItem("name") == null) {
-		var name = prompt("What is your name Master?");
+		var name = prompt("What is your name?");
 		localStorage.setItem("name", name)
 	} else {
 		var name = localStorage.getItem("name");
 	}
 
-	output.innerHTML = "Salutations, how may I assist you Master " + name + " ?";
+	output.innerHTML = "Salutations, how may I assist you " + name + " ?";
 
 	var now = new Date(),
             months = ['January', 'February', 'March', "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -186,47 +187,50 @@
 	  		output.innerHTML = eval(q);
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 	  	} else if (inputCheck.includes("how are you")) {
-	  		output.innerHTML = "Quite satisfactory Master " + name;
+	  		output.innerHTML = "Quite satisfactory " + name;
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
-	  	} else if (inputCheck.includes("hello")) {
-	  		output.innerHTML = "Hello Master " + name;
+	  	} else if (inputCheck.includes("you exist") || inputCheck.includes("what are you")) {
+	  		output.innerHTML = "I exist to aid people like you - " + name;
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("hello") || inputCheck.includes("hi") || inputCheck.includes("hey")) {
+	  		output.innerHTML = "Hello " + name;
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 	  	} else if (inputCheck.includes("your name")) {
-	  		output.innerHTML = "I am Zelenka Master " + name;
+	  		output.innerHTML = "I am Zelenka " + name;
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 	  	} else if (inputCheck.includes("what is my name")) {
-	  		output.innerHTML = "You are Master " + name;
+	  		output.innerHTML = "You are " + name;
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 	  	} else if (inputCheck.includes("change my name")) {
-	  		name = prompt("What is your name Master?");
+	  		name = prompt("What is your name?");
 			localStorage.setItem("name", name)
-	  		output.innerHTML = "You are now Master " + name;
+	  		output.innerHTML = "You are now " + name;
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 	  	} else if (inputCheck.includes("what is the date") || inputCheck.includes("what date is it")) { 
             date = [now.getDate(), 
                     months[now.getDate()],
                     " of " + months[now.getMonth()]].join('');
-                    output.innerHTML = date + " Master " + name;
+                    output.innerHTML = date + " " + name;
             setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 
 	  	} else if (inputCheck.includes("what is the time") || inputCheck.includes("what time is it")) { 
-                    output.innerHTML = time + " Master " + name;
+                    output.innerHTML = time + " " + name;
             setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 
 	  	} else if (inputCheck.includes("google: ")) {
 	  		q=inputCheck.replace("google: ", "");
 	  		window.open("http://google.co.uk/search?q="+q);
-	  		output.innerHTML = "Here are your results Master " + name + ": http://google.co.uk/search?q="+q;
+	  		output.innerHTML = "Here are your results " + name + ": http://google.co.uk/search?q="+q;
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 
 	  	} else if (inputCheck.includes("url: ")) {
 	  		q=inputCheck.replace("url: ", "");
 	  		window.open("http://"+q, "_blank");
-	  		output.innerHTML = "Here are your results Master " + name + ": http://"+q;
+	  		output.innerHTML = "Here are your results " + name + ": http://"+q;
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 	  	} else if (inputCheck.includes("beethoven")) {
 	  		if (inputCheck.includes("metre")) {
-	  			output.innerHTML = "Common time for the grave section, cross common time for the allegro section";
+	  			output.innerHTML = "Common time for the grave section : cross common time for the allegro section";
 	  		} else if (inputCheck.includes("tempo")) {
 	  			output.innerHTML = "Grave - very slow and solemn : allegro di molto e con brio - very fast and with brilliance";
 	  		} else if (inputCheck.includes("rhythm")) {
@@ -241,22 +245,27 @@
 	  			output.innerHTML = "Exposition:,intro - C minor to E flat major : First Subject - C minor : Second Subject - E flat minor : Transition - E flat major : Codetta - C minor,Development:,Grave - G minor : Allegro - E minor,Recapitulation:,First Subject - C minor : Second Subject - F minor (sub dominant) : Grave - C minor";
 	  		} else if (inputCheck.includes("texture")) {
 	  			output.innerHTML = "Grave - Dense homophonic monophonic scales : Allegro - Mostly homophonic : Ending - Chordal homophonic";
+	  		} else {
+	  			output.innerHTML = "Error 001 : you may have spelt something incorrectly or weren't specific enough";
 	  		}
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 	  	} else {
-	  		output.innerHTML = "I cannot compute that query Master " + name;
+	  		output.innerHTML = "I cannot compute that query " + name;
 	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
 	  	}
 	  	input.value = "";
 	  	setTimeout(function() {
-	  		historyOfQuestions.unshift("<div style='color: #123542; background-color: #7DCEB3;'>A: " + output.innerHTML.toLowerCase() + "</div>");
-	  		historyOfQuestions.unshift("Q: " + inputCheck);
+	  		historyOfQuestions.unshift("<div style='color: #123542; background-color: #7DCEB3; font-style: italic; border-radius: 	5px;'>" + output.innerHTML.toLowerCase() + "</div>");
+	  		historyOfQuestions.unshift("" + inputCheck);
 	  		var historyString = historyOfQuestions.toString().split(",").join("<br />");
 	  		document.getElementById("History").innerHTML = historyString;
 	  	}, timeRead * 500);
 
 	  }
 	});
+
+//Errors
+//Error 0001 - not specific enough : correct start, wrong sub answer
 
 </script>
 
