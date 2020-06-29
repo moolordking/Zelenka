@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+	<link rel="icon" href="Icon.png">
+	<meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<title>Zelenka</title>
+	<style>
+	body {
+		background-color: #123542;
+		overflow-x: hidden;
+		font-family: 'Poiret One', sans-serif;
+	}
+	h1 {
+		color: #7dceb3;
+		font-family: 'Poiret One', sans-serif;
+		font-size: 50px;
+		margin-left: 10px;
+		margin-top: 0px;
+	}
+	body::-webkit-scrollbar { 
+    	display: none; 
+    } 
+	#contentBox {
+		background-color: #123542;
+		/*background-image: linear-gradient(#123542, #7dceb3);*/
+		width: 100vw;
+		height: 100vh;
+		margin-left: -8px;
+		margin-top: -20px;
+	}
+	#programBox {
+		width: 80vw;
+		height: 80vw;
+		/*background-image: linear-gradient(#7dceb3, #123542);*/
+		background-color: transparent;
+		animation: SlideIn 1s;
+	}
+
+	@keyframes SlideIn {
+		0% {opacity: 0; transform: translate(0px, -30vh);}
+	}
+
+	#Input {
+		width: 100%;
+		height: 30px;
+		font-family: 'Poiret One', sans-serif;
+		font-size: 30px;
+		font-weight: bold;
+		border: none;
+		background-color: #7dceb3;
+		color: #123542;
+		margin-top: -20px;
+	}
+
+	#Zelenka {
+		width: 50%;
+		height: 50%;
+		background-color: #7dceb3;
+		/*background: radial-gradient(#7dceb3, #7dceb3);*/
+		border-radius: 50vw; 
+		overflow: hidden;
+	}
+
+	#Eye {
+		width: 50%;
+		height: 50%;
+		background-color: #123542;
+		border-radius: 50%;
+		transform: translate(0, 50%);
+		animation: moveEye 20s infinite cubic-bezier(1,-0.29,0,.99), Blink 25s infinite cubic-bezier(1,-0.29,0,.99);
+	}
+
+	@keyframes moveEye {
+		0% {transform: translate(0, -40%) scale(0.7) rotateX(35deg);}
+		12.5% {transform: translate(0, 30%);}
+		25% {transform: translate(0, 100%) scale(0.7) rotateX(-35deg);}
+		37.5% {transform: translate(0, 30%);}
+		50% {transform: translate(-70%, 30%) scale(0.7) rotateY(-35deg);}
+		62.5% {transform: translate(0, 30%);}
+		75% {transform: translate(70%, 30%) scale(0.7) rotateY(35deg);}
+		87.5% {transform: translate(0%, 30%);}
+		100% {transform: translate(0%, -40%) scale(0.7) rotateX(35deg);}
+	}
+
+	@keyframes Blink {
+		10% {background-color: #123542;}
+		12% {background-color: #7dceb3;}
+		14% {background-color: #123542;}
+		40% {background-color: #123542;}
+		42% {background-color: #7dceb3;}
+		44% {background-color: #123542;}
+		70% {background-color: #123542;}
+		72% {background-color: #7dceb3;}
+		74% {background-color: #123542;}
+	}
+
+	#Pupil {
+		width: 50%;
+		height: 50%;
+		background-color: #7dceb3;
+		border-radius: 50%;
+		transform: translate(0, 50%);
+		color: #123542;
+	}
+
+	#Mouth {
+		width: 50%;
+		height: 10%;
+		background-color: #123542;
+	    margin-top: 60%;
+	    animation: talk 10s infinite cubic-bezier(1,-0.29,0,.99);
+	    border-radius: 100%;
+	} 
+
+	@keyframes talk {
+		20% {height: 10%;}
+		22% {height: 25%;}
+		24% {height: 10%;}
+		30% {height: 35%;}
+		36% {height: 10%;}
+		70% {height: 10%;}
+		76% {height: 45%;}
+		82% {height: 10%;}
+	}
+
+	h2 {
+		color: #7dceb3;
+		font-family: 'Poiret One', sans-serif;
+		font-size: 25px;
+		margin-top: 10px;
+	}
+
+	h3 {
+		color: #7dceb3;
+		font-family: 'Poiret One', sans-serif;
+		font-size: 20px;
+		opacity: 0.3;
+	}
+	</style>
+</head>
+<body>
+
+<h1>Zelenka</h1>
+
+<center>
+	<div id="contentBox">
+		<div id="programBox">
+			<div id="Zelenka"><div id="Eye"><div id="Pupil"></div><div id="Mouth"></div></div></div>
+			<h2 id="Output">Salutations, how may I assist you Master?</h2>
+			<input id="Input">
+			<h3 id="History"></h2>
+		</div>
+	</div>
+</center>
+
+<script>
+
+	var historyOfQuestions = [];
+
+	var q;
+	var input = document.getElementById("Input");
+	var inputCheck = input.value.toLowerCase();
+	var output = document.getElementById("Output");
+	var timeRead = "2";
+
+	if (localStorage.getItem("name") == null) {
+		var name = prompt("What is your name Master?");
+		localStorage.setItem("name", name)
+	} else {
+		var name = localStorage.getItem("name");
+	}
+
+	output.innerHTML = "Salutations, how may I assist you Master " + name + " ?";
+
+	var now = new Date(),
+            months = ['January', 'February', 'March', "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            time = now.getHours() + ' hours and ' + now.getMinutes() + " minutes";
+
+	input.addEventListener("keyup", function(event) {
+	  if (event.keyCode === 13) {
+	  	inputCheck = input.value.toLowerCase();
+	  	if (inputCheck.includes("math: ")) {
+	  		q=inputCheck.replace("math:", "").replace("tpo(", "Math.pow(").replace("sqt(", "Math.sqrt(");
+	  		output.innerHTML = eval(q);
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("how are you")) {
+	  		output.innerHTML = "Quite satisfactory Master " + name;
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("hello")) {
+	  		output.innerHTML = "Hello Master " + name;
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("your name")) {
+	  		output.innerHTML = "I am Zelenka Master " + name;
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("what is my name")) {
+	  		output.innerHTML = "You are Master " + name;
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("change my name")) {
+	  		name = prompt("What is your name Master?");
+			localStorage.setItem("name", name)
+	  		output.innerHTML = "You are now Master " + name;
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("what is the date") || inputCheck.includes("what date is it")) { 
+            date = [now.getDate(), 
+                    months[now.getDate()],
+                    " of " + months[now.getMonth()]].join('');
+                    output.innerHTML = date + " Master " + name;
+            setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+
+	  	} else if (inputCheck.includes("what is the time") || inputCheck.includes("what time is it")) { 
+                    output.innerHTML = time + " Master " + name;
+            setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+
+	  	} else if (inputCheck.includes("google: ")) {
+	  		q=inputCheck.replace("google: ", "");
+	  		window.open("http://google.co.uk/search?q="+q);
+	  		output.innerHTML = "Here are your results Master " + name + ": http://google.co.uk/search?q="+q;
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+
+	  	} else if (inputCheck.includes("url: ")) {
+	  		q=inputCheck.replace("url: ", "");
+	  		window.open("http://"+q, "_blank");
+	  		output.innerHTML = "Here are your results Master " + name + ": http://"+q;
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else if (inputCheck.includes("beethoven")) {
+	  		if (inputCheck.includes("metre")) {
+	  			output.innerHTML = "Common time for the grave section, cross common time for the allegro section";
+	  		} else if (inputCheck.includes("tempo")) {
+	  			output.innerHTML = "Grave - very slow and solemn : allegro di molto e con brio - very fast and with brilliance";
+	  		} else if (inputCheck.includes("rhythm")) {
+	  			output.innerHTML = "Grave - dotted rhythms sextuplets septuplets semihemidemiquavers : Allegro - staccato crotchets quavers acciaccaturas mordents";
+	  		} else if (inputCheck.includes("dynamics")) {
+	  			output.innerHTML = "Contrasting dynamics - pp to ff : sudden changes - eg. sf and fp";
+	  		} else if (inputCheck.includes("melody")) {
+	  			output.innerHTML = "Grave - mainly conjunct quasi improvisatory feel : Fast descending notes : Allegro - ascending staccato crotchets periodic phrasing : Antiphony and hand crossing across tessitura in 2nd subject : Contrary motion : Scalic passages in transition";
+	  		} else if (inputCheck.includes("harmony")) {
+	  			output.innerHTML = "Grave - dense 7 note C major chord opens - Use of diminished 7ths : Allegro - Tonic oscillating quaver pedal - Diatonic harmony - functional harmony with cadences (v-i) - Circle of fifths bar 81-84";
+	  		} else if (inputCheck.includes("tonality")) {
+	  			output.innerHTML = "Exposition:,intro - C minor to E flat major : First Subject - C minor : Second Subject - E flat minor : Transition - E flat major : Codetta - C minor,Development:,Grave - G minor : Allegro - E minor,Recapitulation:,First Subject - C minor : Second Subject - F minor (sub dominant) : Grave - C minor";
+	  		} else if (inputCheck.includes("texture")) {
+	  			output.innerHTML = "Grave - Dense homophonic monophonic scales : Allegro - Mostly homophonic : Ending - Chordal homophonic";
+	  		}
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	} else {
+	  		output.innerHTML = "I cannot compute that query Master " + name;
+	  		setTimeout(function() {output.innerHTML = "How else may I assist you?"}, timeRead*1000);
+	  	}
+	  	input.value = "";
+	  	setTimeout(function() {
+	  		historyOfQuestions.unshift("<div style='color: #123542; background-color: #7DCEB3;'>A: " + output.innerHTML.toLowerCase() + "</div>");
+	  		historyOfQuestions.unshift("Q: " + inputCheck);
+	  		var historyString = historyOfQuestions.toString().split(",").join("<br />");
+	  		document.getElementById("History").innerHTML = historyString;
+	  	}, timeRead * 500);
+
+	  }
+	});
+
+</script>
+
+</body>
+</html>
